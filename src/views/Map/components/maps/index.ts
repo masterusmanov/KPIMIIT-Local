@@ -1,0 +1,15 @@
+export { default as Republic } from "./republic.vue";
+export { default as Andijan } from "./andijan.vue";
+export { default as Bukhara } from "./bukhara.vue";
+export { default as Djizzakh } from "./djizzakh.vue";
+export { default as Kashkadarya } from "./kashkadarya.vue";
+export { default as Karakalpak } from "./karakalpak.vue";
+export { default as Namangan } from "./namangan.vue";
+export { default as Navoi } from "./navoi.vue";
+export { default as Samarkand } from "./samarkand.vue";
+export { default as Surkhandarya } from "./surkhandarya.vue";
+export { default as Syrdarya } from "./syrdarya.vue";
+export { default as Tashkent } from "./tashkent.vue";
+export { default as TashkentCity } from "./tashkent-city.vue";
+export { default as Fergana } from "./fergana.vue";
+export { default as Khorezm } from "./khorezm.vue";

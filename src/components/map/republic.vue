@@ -1,0 +1,649 @@
+<script lang="ts" setup>
+// import { useListStore } from "@/stores/list";
+import counter from "./counter.vue";
+
+const router = useRouter();
+const route = useRoute();
+
+// const listStore = useListStore();
+
+// const filter = ref(listStore.filter);
+
+const hoveredRegion = ref<number | null>(null);
+
+const statistics = computed(() => []);
+
+const getPathColor = (region_id: number) => {
+  const region: any = statistics.value?.find(
+    (region: any) => region.region_id == region_id
+  );
+  if (region?.overall <= 40) {
+    return "#FFAB9D";
+  } else if (region?.overall <= 60) {
+    return "#E1E1E1";
+  } else {
+    return "#C4E89E";
+  }
+};
+
+const getRegionName = (region_id: number) => {
+  const region: any = statistics.value?.find(
+    (region: any) => region.region_id == region_id
+  );
+  // return `${region?.region_id} ${region?.region_name}`;
+  return (region && region.region_name.replaceAll(" ", "<br/>")) || "";
+};
+
+const getRegionRating = (region_id: number) => {
+  const region: any = statistics.value?.find(
+    (region: any) => region.region_id == region_id
+  );
+  return region?.overall.toFixed(2) ?? "";
+};
+
+const emit = defineEmits(["fetchDistrict"]);
+
+const onClickRegion = (id: number) => {
+  emit("fetchDistrict", id);
+
+  // filter.value.view = "district";
+  // filter.value.region = id;
+  // filter.value.district = "region";
+  // router.replace({
+  //   query: {
+  //     ...route.query,
+  //     view: "district",
+  //     region: id,
+  //     district: "region",
+  //   },
+  // });
+};
+</script>
+
+<template>
+  <div class="w-4/5 mx-auto py-8 pb-32 relative">
+    <!-- Qoraqalog'iston -->
+
+    <div class="absolute top-48 left-32 z-10 flex flex-col items-center">
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-36"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(1)"
+            :key="getRegionRating(1)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(1)"></div>
+      </div>
+    </div>
+
+    <!-- Xorazm -->
+
+    <div
+      class="absolute top-[320px] left-[220px] z-10 flex flex-col items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-36"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(13)"
+            :key="getRegionRating(13)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(13)"></div>
+      </div>
+    </div>
+
+    <!-- Navoiy -->
+
+    <div
+      class="absolute top-24 left-[400px] z-10 flex flex-col-reverse items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-36"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(7)"
+            :key="getRegionRating(7)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(7)"></div>
+      </div>
+    </div>
+
+    <!-- Bukhara -->
+
+    <div
+      class="absolute top-[440px] left-[380px] z-10 flex flex-col items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-36"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(5)"
+            :key="getRegionRating(5)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(5)"></div>
+      </div>
+    </div>
+
+    <!-- Kashkadarya -->
+
+    <div
+      class="absolute top-[520px] left-[500px] z-10 flex flex-col items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-24"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(6)"
+            :key="getRegionRating(6)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(6)"></div>
+      </div>
+    </div>
+
+    <!-- Samarkand -->
+
+    <div
+      class="absolute top-[80px] left-[550px] z-10 flex flex-col-reverse items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-80"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(8)"
+            :key="getRegionRating(8)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(8)"></div>
+      </div>
+    </div>
+
+    <!-- Djizakh -->
+
+    <div
+      class="absolute top-[200px] left-[600px] z-10 flex flex-col-reverse items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-40"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(4)"
+            :key="getRegionRating(4)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(4)"></div>
+      </div>
+    </div>
+
+    <!-- Djizakh -->
+
+    <div
+      class="absolute top-[580px] left-[600px] z-10 flex flex-col items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-20"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(9)"
+            :key="getRegionRating(9)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(9)"></div>
+      </div>
+    </div>
+
+    <!-- Sirdarya -->
+
+    <div
+      class="absolute top-[390px] left-[660px] z-10 flex flex-col items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-20"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(10)"
+            :key="getRegionRating(10)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(10)"></div>
+      </div>
+    </div>
+
+    <!-- Tashkent city -->
+
+    <div
+      class="absolute top-[200px] left-[682px] z-10 flex flex-col-reverse items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-20"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(14)"
+            :key="getRegionRating(14)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(14)"></div>
+      </div>
+    </div>
+
+    <!-- Tashkent region -->
+
+    <div
+      class="absolute top-[160px] left-[720px] z-10 flex flex-col-reverse items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-24"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(11)"
+            :key="getRegionRating(11)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(11)"></div>
+      </div>
+    </div>
+
+    <!-- Namangan -->
+
+    <div
+      class="absolute top-[190px] left-[810px] z-10 flex flex-col-reverse items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-[100px]"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(2)"
+            :key="getRegionRating(2)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(2)"></div>
+      </div>
+    </div>
+
+    <!-- Fergana -->
+
+    <div
+      class="absolute top-[370px] left-[800px] z-10 flex flex-col items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-20"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(12)"
+            :key="getRegionRating(12)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(12)"></div>
+      </div>
+    </div>
+
+    <!-- Andijan -->
+
+    <div
+      class="absolute top-[350px] left-[850px] z-10 flex flex-col items-center"
+    >
+      <div class="w-2 h-2 bg-cBlue-200 rounded-full"></div>
+      <div
+        class="border w-0.5 border-dashed border-[#8D8D8D] bg-transparent h-20"
+      ></div>
+      <div class="bg-transparent py-1">
+        <div class="mb-1">
+          <counter
+            :start="0"
+            :end="getRegionRating(3)"
+            :key="getRegionRating(3)"
+            :duration="3000"
+          />
+        </div>
+        <div v-html="getRegionName(3)"></div>
+      </div>
+    </div>
+
+    <svg
+      class="republic_svg"
+      width="100%"
+      height="100%"
+      viewBox="0 0 701 452"
+      preserveAspectRatio="xMidYMid meet"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        class="relative"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M648.314 291.822L644.59 289.585L648.314 287.348V291.822Z"
+        :fill="getPathColor(12)"
+        stroke="#262626"
+        stroke-linejoin="round"
+        :class="{
+          'active-path': hoveredRegion === 12,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 12,
+        }"
+        @mouseover="hoveredRegion = 12"
+        @mouseleave="hoveredRegion = null"
+        @click="onClickRegion(12)"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M622.989 286.604L625.224 285.113L625.969 286.604L623.734 288.841L625.969 291.824L622.244 295.553L619.264 294.061L617.774 295.553L617.03 294.061L618.519 291.079L616.285 288.841L614.05 285.113L614.795 281.384L618.519 283.621L622.989 286.604Z"
+        :fill="getPathColor(12)"
+        stroke="#262626"
+        stroke-linejoin="round"
+        :class="{
+          'active-path': hoveredRegion === 12,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 12,
+        }"
+        @mouseover="hoveredRegion = 12"
+        @mouseleave="hoveredRegion = null"
+        @click="onClickRegion(12)"
+      />
+      <path
+        @click="onClickRegion(1)"
+        @mouseover="hoveredRegion = 1"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 1,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 1,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M252.775 229.185L263.84 246.461L255.01 250.065H251.615L246.816 242.608L240.112 235.151L233.408 230.677L225.959 229.185L220.744 230.677L215.41 233.741L212.551 228.439L208.826 227.694L205.847 224.711L204.357 223.965L194.673 215.017L192.438 211.288L191.693 208.305L187.224 207.56L184.245 200.848L177.54 194.883L174.561 197.12L171.581 197.866L172.326 200.103L170.836 201.594L169.347 199.357L162.643 197.12L165.622 194.137L164.877 188.917L165.622 186.68L167.112 185.189L164.132 182.206L161.153 177.732L145.51 178.477L142.53 177.732L141.041 176.24L138.061 175.495L136.571 174.003L135.081 167.292L131.357 164.309L128.377 165.055L122.418 163.563L120.183 160.58L111.99 150.141L110.5 150.886L109.755 155.361L106.775 157.598L103.051 156.106L98.5814 154.615L92.6223 156.852L93.3672 159.089L99.3263 162.818L103.796 172.512L106.03 175.495L103.051 176.24L101.561 175.495L102.306 171.02L100.071 168.038L95.6019 166.546L90.3876 164.309L82.9386 167.292L84.4284 171.02L81.4488 176.24L79.2141 178.477L79.959 179.969L71.7652 181.46L71.0203 176.986L67.2958 174.003L65.806 173.257L62.0815 170.275L59.1019 171.02L55.3774 173.257L53.8877 175.495L47.9285 192.646L42.7142 195.629L43.4591 201.594L42.7142 206.814L44.204 212.034L45.6938 220.982L49.4183 222.474L45.6938 224.711L42.7142 228.439L34.5203 226.202L1 221.728L18.1326 24.1168L76.2345 9.94844L95.6019 5.47422L117.204 1L119.439 1.7457L117.204 7.71133L111.99 15.1684L109.755 22.6254L103.796 33.8109L103.051 39.7766L106.03 47.9793L105.286 50.9621L102.306 54.6906L103.051 59.1648L105.286 60.6562L108.265 61.402L114.224 56.9277L120.928 48.725L120.183 47.2336L117.204 46.4879L118.694 43.5051L120.928 42.7594L122.418 45.7422L124.653 44.2508L123.163 42.0137L123.908 39.0309L123.163 34.5566L124.653 33.8109L126.143 29.3367L120.928 31.5738L119.439 30.0824L121.673 25.6082L126.143 21.134L123.908 18.1512L123.163 12.9312L124.653 5.47422L150.724 24.8625L147.745 31.5738L145.51 34.5566L144.02 38.2852L141.785 42.0137L140.296 45.7422L141.041 50.9621L145.51 56.182L152.214 63.6391L155.938 67.3676L153.704 71.8418L151.469 77.0617L152.214 78.5531L161.153 77.8074L166.367 74.8246L167.857 72.5875L165.622 71.0961L167.112 68.859L170.836 68.1133L172.326 63.6391L171.581 59.1648L170.092 52.4535L173.071 47.2336L210.316 67.3676L211.806 70.3504L212.551 75.5703L214.785 79.2988L222.979 88.993L246.071 115.838L247.561 116.584L252.03 124.041L253.52 126.278L264.693 129.261L254.265 150.886L243.836 170.275L241.602 174.749L240.112 187.426L245.326 197.866L236.387 203.086L235.642 205.323L252.775 229.185Z"
+        :fill="getPathColor(1)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(13)"
+        @mouseover="hoveredRegion = 13"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 13,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 13,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M255.012 250.067L261.716 257.524L263.206 261.998L260.971 266.473L252.777 276.913L249.798 271.693L249.053 268.71L246.818 265.727L244.583 256.032L243.839 249.321L240.114 243.355L231.175 236.644L223.726 233.661L221.492 234.407L220.747 237.39L216.277 241.118L212.553 240.372L208.828 237.39L203.614 238.881L202.124 236.644L199.145 235.898L185.737 237.39L181.267 235.898L176.798 232.17L168.604 227.695L167.114 224.712L167.859 220.984L171.584 217.255L167.114 209.798L169.349 206.07L174.563 207.561L170.839 201.595L172.329 200.104L171.584 197.867L174.563 197.121L177.543 194.884L184.247 197.121L187.226 207.561L191.696 208.307L192.441 211.29L194.675 215.018L204.359 223.967L205.849 224.712L208.828 227.695L212.553 228.441L215.533 233.661L220.747 230.678L222.981 229.187L233.41 230.678L240.114 235.152L246.818 242.61L251.288 250.067H255.012Z"
+        :fill="getPathColor(13)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(5)"
+        @mouseover="hoveredRegion = 5"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 5,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 5,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M342.915 360.428L340.68 358.191L335.466 360.428L333.231 359.682L315.354 347.751L313.119 344.768L308.649 338.803L305.67 335.82L269.17 309.72L263.211 303.755L261.721 297.789L262.466 294.806L261.721 291.078L260.976 287.349L259.486 284.366L252.782 276.909L260.976 266.469L263.211 261.995L261.721 257.521L255.017 250.064L263.956 246.336L252.782 229.184L270.899 223.846L272.894 228.439L279.598 236.641L284.813 246.336L295.241 250.064L301.2 253.047L313.864 260.504L316.098 264.978L320.568 263.487L323.547 259.012L325.782 253.793L328.017 251.555L330.996 253.793L333.231 261.25L344.404 261.995L345.149 261.25L346.639 256.775L348.874 255.284L357.068 254.538L358.558 252.301L359.302 253.793L361.537 261.995L364.517 264.232L368.241 264.978H382.394L381.649 274.672L378.67 274.299L376.435 279.146L374.945 281.384L368.986 285.112L365.262 283.621L361.537 284.366L363.027 288.095L362.282 291.823L364.517 294.061L361.537 295.552L359.302 299.28L354.833 303.009L351.853 308.229L355.578 314.194L360.047 317.177L362.282 316.432L368.241 319.414L369.731 324.634L373.455 327.617L374.945 332.091L368.986 338.057L366.751 338.803L363.027 342.531L365.262 347.005L364.517 348.497L349.619 354.462L347.384 355.954L342.915 360.428Z"
+        :fill="getPathColor(5)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(6)"
+        @mouseover="hoveredRegion = 6"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 6,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 6,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M468.052 338.058L467.307 341.786L468.797 342.532L474.011 344.023L481.46 347.006L476.246 354.463L475.501 355.955L476.991 361.921L477.735 365.649L476.246 369.378L472.521 367.886L470.286 369.378L468.052 373.852L464.327 376.835L461.348 381.309L459.858 387.275L455.389 391.749L450.919 393.241L447.94 399.206L443.47 403.681L441.98 409.646L440.491 410.392L439.746 408.901L436.766 407.409L432.297 406.664L426.338 404.426L422.613 401.444L418.889 399.952L415.164 397.715L412.185 396.969L407.715 394.732L404.736 395.478L401.756 397.715L398.776 398.461L396.542 396.969L378.664 386.529L368.981 377.581L366.001 376.089L360.042 373.852L354.828 370.869L345.889 363.412L342.909 360.429L347.379 355.955L349.613 354.463L364.511 348.498L365.256 347.006L363.021 344.023L366.746 338.803L368.981 338.058L374.94 332.092L378.664 330.601L400.266 328.363L403.246 326.126L404.736 329.855L409.205 333.583L410.695 338.058L414.419 338.803L420.378 335.821L427.082 333.583L432.297 336.566L435.276 335.075L436.766 332.838L439.746 331.346L447.195 332.838L448.684 335.075L454.644 338.058L455.389 335.821L468.052 338.058Z"
+        :fill="getPathColor(6)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(9)"
+        @mouseover="hoveredRegion = 9"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 9,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 9,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M440.491 410.392L441.98 409.646L443.47 403.68L447.94 399.206L450.919 393.24L455.389 391.749L459.858 387.275L461.348 381.309L464.327 376.835L468.052 373.852L470.286 369.378L472.521 367.887L476.246 369.378L477.735 365.649L476.991 361.921L475.501 355.955L476.246 354.464L481.46 352.973L482.205 353.718L493.378 352.227L496.358 352.973L499.337 352.227L503.062 358.192L500.827 362.667L498.593 363.412L499.337 365.649L497.848 368.632L498.593 371.615L499.337 376.835L500.827 379.072L501.572 382.801L505.297 387.275L512.001 391.749L513.49 395.478L512.001 402.189L509.021 408.155L503.807 410.392L502.317 416.357L498.593 423.069L494.123 428.289L492.633 431.271L491.144 437.237L492.633 443.948L491.144 449.914L490.399 448.423L484.44 446.931L480.715 448.423L479.97 446.185L474.756 449.168L469.542 451.405L468.052 450.66L466.562 448.423L462.838 446.185L461.348 443.203L457.623 440.965L451.664 442.457L444.215 443.948L439.746 442.457L436.766 443.203L436.021 440.965L437.511 437.983L435.276 434.254L436.021 429.034L441.236 411.137L440.491 410.392Z"
+        :fill="getPathColor(9)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(3)"
+        @mouseover="hoveredRegion = 3"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 3,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 3,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M660.225 229.931L664.695 228.439L665.44 226.202L667.674 228.439L672.144 230.676L675.123 231.422L678.103 235.151L681.827 235.896L687.042 234.405L688.531 235.151L689.276 237.388L694.491 233.659L696.725 235.896L699.705 235.151L693.746 241.116L690.766 244.099L686.297 245.591L685.552 250.811L681.827 251.556L678.848 255.285L675.868 253.794L672.889 253.048L669.909 250.811L669.164 251.556L669.909 256.031L672.889 259.014L671.399 262.742L666.929 261.251L664.695 259.759L663.95 254.539L656.501 253.421L649.052 252.302L646.072 249.319L640.113 247.828L639.368 249.319L636.389 245.591L637.878 244.099L636.389 241.116L638.623 238.879L642.348 237.388L649.052 236.642L654.266 237.388L659.48 235.896L660.225 229.931Z"
+        :fill="getPathColor(3)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(4)"
+        @mouseover="hoveredRegion = 4"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 4,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 4,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M518.708 286.601L515.728 288.093L520.943 290.33L518.708 294.058L520.198 299.278L519.453 305.244L518.708 305.99L517.963 317.175L515.728 319.412L512.004 322.395L508.279 323.141L504.555 321.649L498.596 322.395L483.698 319.412L480.718 320.158L476.994 323.141L473.269 326.869L465.82 323.141L464.331 321.649L467.31 316.43L472.524 308.973L470.29 303.007L453.902 300.024L451.667 296.296L447.943 293.313L449.433 291.076L448.688 288.093L447.198 287.347L445.708 280.636L446.453 277.653L444.963 274.67L439.749 261.993L441.239 259.01L439.749 256.773L439.004 253.045L435.28 252.299L433.79 250.062L433.045 242.605L433.79 241.114L438.259 238.876L440.494 239.622L478.484 235.148L482.208 236.639L485.933 233.656L488.912 238.131L490.402 241.859L494.126 240.368L493.382 243.351L494.126 244.842L493.382 251.553L489.657 254.536L492.637 256.028L497.106 259.01L501.575 261.993L500.83 264.976L497.851 265.722L500.086 270.196L495.616 281.382L496.361 285.856L506.79 285.11L518.708 281.382L517.963 285.856L518.708 286.601Z"
+        :fill="getPathColor(4)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(11)"
+        @mouseover="hoveredRegion = 11"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 11,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 11,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M587.982 215.761L585.747 220.236L587.237 223.218L586.492 227.693L588.726 229.93L589.471 236.641L585.747 235.895L585.002 241.861L582.767 244.844L576.063 248.572L572.339 252.301L564.89 255.284L561.91 258.267L558.186 259.758L551.482 252.301L548.502 251.555L545.522 253.047L544.033 255.284L544.778 261.995L541.053 263.486L539.563 265.724L541.798 268.706L544.778 275.418L545.522 279.146L541.798 280.638L544.778 282.875L541.053 285.112L535.839 283.62L536.584 281.383L536.088 278.026L535.839 272.844L537.329 270.943L535.094 267.215L535.839 263.486L531.386 260.594L532.114 259.012L529.88 259.758L529.135 258.267L523.176 251.555L520.196 250.809L517.961 247.081L515.727 245.59L518.706 243.352L519.451 239.624L523.176 236.641L524.665 233.658L530.624 229.93L531.369 224.71L529.88 222.473L537.329 216.507L541.798 215.016L544.033 215.761L547.012 209.796L552.971 204.576L558.186 202.339L564.145 200.847L566.38 197.865L568.614 197.119L572.339 192.645L575.318 188.17L578.298 185.188L579.043 182.205L584.257 178.476L586.492 179.968L587.982 182.205L590.961 181.459L593.196 176.239L594.686 171.765L597.665 172.511L600.645 171.019L605.859 165.799L608.094 166.545L614.053 169.528L615.543 170.274L611.073 174.748L605.859 179.222L599.9 180.713L598.41 187.425L593.941 188.17L589.471 192.645L585.747 199.356L581.277 203.084L575.318 207.559L574.573 209.05L576.808 211.287L587.982 215.761Z"
+        :fill="getPathColor(11)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(7)"
+        @mouseover="hoveredRegion = 7"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 7,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 7,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M438.247 238.878L433.777 241.115L433.032 242.606L433.777 250.063L435.267 252.3L438.991 253.046L439.736 256.775L441.226 259.012L439.736 261.994L446.068 277.654L434.522 274.671L433.032 270.943L430.053 267.96L423.349 270.197L420.369 268.706L417.389 273.18L418.134 276.163L416.645 279.146L417.389 286.603L414.41 294.06L417.389 295.551L413.665 299.28L404.726 301.517L397.277 298.534L395.043 297.043L389.828 294.805L389.083 295.551L387.594 300.771L388.339 301.517L386.849 307.482L383.124 308.228L380.145 306.737L379.4 308.974L374.186 310.465L377.165 314.939L377.91 319.414L377.165 323.888L379.4 330.599L374.93 332.091L373.441 327.616L369.716 324.634L368.226 319.414L362.267 316.431L360.032 317.176L355.563 314.194L351.839 308.228L354.818 303.008L359.288 299.28L361.522 295.551L364.502 294.06L362.267 291.823L363.012 288.094L361.522 284.366L365.247 283.62L368.971 285.111L374.93 281.383L376.42 279.146L378.655 273.926L381.634 274.671L382.379 264.977L364.502 264.232L361.522 261.994L359.288 253.792L358.543 252.3L357.053 254.537L348.841 255.353L346.624 256.775L345.135 261.249L344.39 261.994L333.216 261.249L331.248 253.842L328.002 251.555L325.767 253.792L323.533 259.012L320.553 263.486L316.084 264.977L313.849 260.503L301.186 253.046L295.226 250.063L284.798 246.335L279.584 236.641L272.88 228.438L270.645 223.964L252.767 229.184L235.635 205.321L236.38 203.084L245.318 197.864L240.104 187.424L241.594 174.747L243.829 170.273L254.257 150.885L264.306 129.619L253.512 126.276L252.022 124.039L247.553 116.582L265.431 113.6L293.737 109.125L341.41 112.854L358.543 103.905L360.777 103.16L362.267 104.651L371.206 115.091L374.93 119.565L384.614 125.531L396.532 147.902L408.451 141.191L407.706 171.019L406.216 172.51L406.961 194.881L426.328 194.135L428.563 207.558L431.543 220.981L435.267 236.641L438.247 238.878Z"
+        :fill="getPathColor(7)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(8)"
+        @mouseover="hoveredRegion = 8"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 8,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 8,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M472.889 326.872L469.537 329.854L468.792 337.312L468.047 338.057L457.619 335.82L454.639 338.057L448.68 335.074L447.19 332.837L439.741 331.346L436.762 332.837L435.272 335.074L432.292 336.566L427.078 333.583L420.374 335.82L414.415 338.803L410.69 338.057L409.201 333.583L404.731 329.854L403.241 326.126L400.262 328.363L379.032 330.973L377.17 323.889L377.915 319.414L377.17 314.94L374.19 310.466L379.405 308.974L380.15 306.737L383.129 308.229L386.854 307.483L388.343 301.517L387.599 300.771L389.088 295.551L389.833 294.806L395.048 297.043L397.282 298.534L404.731 301.517L413.67 299.28L417.394 295.551L414.415 294.06L417.394 286.603L416.65 279.146L418.139 276.163L417.394 273.18L420.374 268.706L423.354 270.197L430.058 267.96L433.037 270.943L434.527 274.671L446.445 277.654L445.7 280.637L447.19 287.349L448.68 288.094L449.425 291.077L447.935 293.314L451.66 296.297L453.894 300.026L470.282 303.009L472.517 308.974L469.537 313.449L464.695 321.652L465.813 323.143L472.889 326.872Z"
+        :fill="getPathColor(8)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(2)"
+        @mouseover="hoveredRegion = 2"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 2,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 2,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M636.399 245.591L629.695 249.32L625.226 254.54L624.481 255.285L615.542 251.557L617.777 247.828L613.307 248.574L609.583 247.828L608.093 250.065L602.879 253.048L603.624 250.065L597.664 249.32L600.644 247.828L599.899 246.337L589.471 236.642L588.726 229.931L586.491 227.694L587.236 223.22L585.746 222.474L587.981 215.762L594.685 211.288L597.664 212.78L599.899 216.508L600.644 221.728L601.389 223.22L603.624 222.474L607.348 225.457L615.542 226.202L618.522 229.185L620.011 224.711L622.991 228.44L623.736 225.457L627.46 227.694L628.205 225.457L626.715 215.762L627.46 215.017L631.185 217.254L633.419 215.762L635.654 209.797L633.419 206.814L634.909 203.085L636.399 203.831L640.124 208.305L645.338 215.017L646.083 221.728L650.552 220.982L652.787 223.22L655.766 220.237L658.001 221.728L660.236 229.931L659.491 235.897L654.277 237.388L649.062 236.642L642.358 237.388L638.634 238.88L636.399 241.117L637.889 244.1L636.399 245.591Z"
+        :fill="getPathColor(2)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(12)"
+        @mouseover="hoveredRegion = 12"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 12,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 12,
+        }"
+        :fill="getPathColor(12)"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M636.4 245.59L639.379 249.319L640.124 247.827L646.083 249.319L649.063 252.302L663.961 254.539L664.706 259.759L659.491 261.996L658.747 264.979L654.277 268.708L657.257 272.436L647.573 276.165L645.338 278.402L642.359 273.182L640.869 273.928L640.124 276.165L634.91 275.419L633.42 273.182L630.441 271.69L626.716 272.436L625.226 270.945L623.736 274.673L614.053 276.91L603.624 279.893L598.41 279.148L596.175 273.928L594.686 272.436L588.726 271.69L589.471 270.199L587.981 267.216L589.471 264.979L592.451 264.233L594.686 261.25L602.879 253.047L605.859 250.065L609.583 247.827L613.308 248.573L617.777 247.827L615.543 251.556L624.481 255.285L625.226 254.539L629.696 249.319L636.4 245.59Z"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(10)"
+        @mouseover="hoveredRegion = 10"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 10,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 10,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M535.831 283.623L526.892 285.115L524.657 285.86L518.698 286.606L517.953 285.86L518.698 281.386L506.78 285.115L496.351 285.86L495.606 281.386L500.076 270.2L497.841 269.455L500.821 264.98L501.566 261.998L509.759 265.726L511.994 263.489L514.974 264.98L516.464 261.252L514.974 258.269L513.484 257.523L511.994 252.303L512.739 247.829L515.719 245.592L517.953 247.083L520.188 250.812L523.168 251.558L529.127 258.269L529.872 259.76L532.106 259.015L531.361 260.506L535.831 263.489L535.086 267.218L537.321 270.946L535.831 273.183L536.576 281.386L535.831 283.623Z"
+        :fill="getPathColor(10)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+      <path
+        @click="onClickRegion(14)"
+        @mouseover="hoveredRegion = 14"
+        @mouseleave="hoveredRegion = null"
+        :class="{
+          'active-path': hoveredRegion === 14,
+          'inactive-path': hoveredRegion !== null && hoveredRegion !== 14,
+        }"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M544.03 224.711L539.56 229.186L534.346 226.203L535.836 221.729L537.325 219.491L542.54 220.983L544.03 224.711Z"
+        :fill="getPathColor(14)"
+        stroke="#262626"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+</template>
+
+<style lang="scss">
+.republic {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+.rating_tag::after {
+  display: none;
+}
+
+.republic_svg {
+  path {
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .active-path {
+    opacity: 1; /* Full opacity for the hovered path */
+  }
+
+  .inactive-path {
+    opacity: 0.3; /* Reduced opacity for other paths */
+  }
+}
+</style>

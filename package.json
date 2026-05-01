@@ -1,0 +1,47 @@
+{
+  "name": "kpi",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:host": "vite --host",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build"
+  },
+  "dependencies": {
+    "@types/animejs": "^3.1.13",
+    "animejs": "^3.2.2",
+    "ant-design-vue": "^4.2.6",
+    "apexcharts": "^4.7.0",
+    "axios": "^1.8.3",
+    "dayjs": "^1.11.13",
+    "lucide-vue-next": "^0.487.0",
+    "pinia": "^3.0.1",
+    "vue": "^3.5.13",
+    "vue-eimzo": "^0.2.5",
+    "vue-i18n": "^11.1.1",
+    "vue-router": "^4.5.0",
+    "vue3-apexcharts": "^1.8.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.13.9",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "autoprefixer": "^10.4.20",
+    "npm-run-all2": "^7.0.2",
+    "postcss": "^8.5.1",
+    "sass-embedded": "^1.85.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.8.0",
+    "unplugin-auto-import": "^19.1.1",
+    "unplugin-icons": "^22.1.0",
+    "unplugin-vue-components": "^28.4.1",
+    "vite": "^6.2.1",
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "vue-tsc": "^2.2.8"
+  }
+}

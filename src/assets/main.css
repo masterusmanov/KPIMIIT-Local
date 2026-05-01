@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+body {
+  overflow-y: hidden;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.ant-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 1232px !important;
+}
+
+.the-table {
+  @apply relative left-1/2 -translate-x-1/2 min-w-[calc(100vw-20px)] w-full;
+}
+
+.the-table table {
+  font-size: 12px;
+}
+
+.the-table th {
+  border-color: #fff !important;
+}
+
+.the-table td {
+  border-color: #dfdfdf !important;
+}
+
+.the-table table tbody tr:nth-child(2):not(.ant-table-placeholder) {
+  font-weight: 700;
+  background: #f8ed90;
+}
+
+.the-table-secondary table tbody tr:nth-child(2):not(.ant-table-placeholder) {
+  font-weight: 400;
+  background: inherit;
+}
+
+.the-table table tbody tr:not(:first-child):nth-child(odd) {
+  background: #f0f0f0;
+}
+
+.the-table .ant-table-cell {
+  padding: 6px !important;
+}
+
+.the-table .ant-table-thead > tr > th {
+  @apply text-gray-900  bg-blue-200;
+  font-weight: 500 !important;
+}
+
+.the-table .ant-table-cell.group-0,
+.the-table .ant-table-cell.group-5,
+.the-table .ant-table-cell.group-10 {
+  @apply bg-teal-200;
+}
+
+.the-table .ant-table-cell.group-1,
+.the-table .ant-table-cell.group-6,
+.the-table .ant-table-cell.group-11 {
+  @apply bg-indigo-200;
+}
+
+.the-table .ant-table-cell.group-2,
+.the-table .ant-table-cell.group-7,
+.the-table .ant-table-cell.group-12 {
+  @apply bg-green-200;
+}
+
+.the-table .ant-table-cell.group-3,
+.the-table .ant-table-cell.group-8,
+.the-table .ant-table-cell.group-13 {
+  @apply bg-orange-200;
+}
+
+.anticon svg {
+  display: block;
+}
+
+.the-tabs label::before {
+  display: none !important;
+}
+
+.the-tabs *,
+.the-input,
+.the-button,
+.the-datepicker,
+.the-select .ant-select-selector,
+.the-datepicker .ant-select-selector {
+  border-radius: 0 !important;
+}
