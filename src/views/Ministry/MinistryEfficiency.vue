@@ -374,13 +374,13 @@ watch(() => [route.query, dateStore.selectedMonth], fetchData);
           <span class="grow text-center font-semibold">
             {{ record[column.dataIndex] || 0 }}
           </span>
-           <img
+           <!-- <img
               src="/chart.svg"
               alt="chart"
               v-if="index != 0"
               class="size-5 text-primary cursor-pointer"
               @click="router.push('/analytics')"
-            />
+            /> -->
         </div>
       </template>
 
